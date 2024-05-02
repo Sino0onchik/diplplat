@@ -16,6 +16,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+CSRF_TRUSTED_ORIGINS = ['https://sino0on.ru/', 'https://www.sino0on.ru/']
 
 # Application definition
 
