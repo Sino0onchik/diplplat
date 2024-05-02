@@ -1,0 +1,44 @@
+# byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# tests and coverage
+*.pytest_cache
+.coverage
+.vscode
+# database & logs
+*.db
+*.sqlite3
+*.log
+
+# venv
+.env2
+.venv
+venv
+
+postgres/
+
+# other
+.DS_Store
+
+# javascript
+package-lock.json
+
+
+**/migrations/**
+!**/migrations/__init__.py
+
+.env
+venv
+.env.dev
+.env.logos
+# TODO may be remove?
+media
+test.py
+.idea/
+
+
+data/cookies/
+/logs/
+
+*.json

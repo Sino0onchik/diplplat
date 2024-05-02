@@ -1,0 +1,246 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+{{ product.title }}
+{% endblock %}
+{% block content %}
+    <main class="productDetail">
+        <style>
+    body {
+        font: 15px / 24px 'PT Sans Caption', Arial, sans-serif;
+        color: #555;
+    }
+
+    .search .search-input {
+        background: #f5f5f5;
+        border: 0;
+        color: #444;
+        display: block;
+        height: 34px;
+        line-height: 18px;
+        padding: 0 70px 0 10px;
+        vertical-align: top;
+        width: 100%;
+        border-radius: 3px;
+    }
+
+    .logo_and_menu-row .search .search-input {
+        padding: 0 44px 0 17px;
+        height: 40px;
+        font-size: 0.933em;
+        line-height: 40px;
+        background: #f5f5f5;
+        border: 1px solid #eee;
+    }
+
+    .logo-row .logo {
+        display: inline-block;
+        position: relative;
+        height: 104px;
+        max-width: 190px;
+        line-height: 101px;
+        z-index: 10;
+    }
+
+    .header .count {
+        position: absolute;
+        top: 0;
+        left: 16px;
+        box-shadow: 0 0 0 2px #fff;
+        background-color: #b0b0b0;
+        font-size: 11px;
+        border-radius: 100%;
+        text-align: center;
+        color: #fff;
+        width: 20px;
+        height: 20px;
+        display: inline-block;
+        line-height: 20px;
+    }
+
+    .header .count.active {
+        background-color: #b0a1fc;
+    }
+
+    .card__item {
+        text-align: center;
+        border: 1px solid #f2f2f2;
+        transition: all ease 0.2s;
+    }
+
+    .card__item:hover {
+        border-color: #fff;
+        box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.15);
+    }
+
+    /* order */
+
+    .order__type button {
+        padding: 6px 10px;
+        border: 1px solid #888;
+        border-radius: 2px;
+    }
+
+    .order__type button.active {
+        border: 1px solid #b0a1fc;
+        background-color: #ac9cfc;
+        color: white;
+    }
+
+    .order__type button.active:hover {
+        border-color: #9b88fc;
+    }
+
+    .order__type button:not(.active):hover {
+        border-color: #9b88fc;
+        color: #9b88fc;
+    }
+
+    .characteristics .name {
+        color: #888;
+        font-size: 16px;
+    }
+
+    .characteristics .value {
+        color: #333;
+        font-size: 16px;
+    }
+</style>
+        <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    screens: {
+                        'lg-md': '992px',
+                    },
+                },
+            },
+        };
+    </script>
+        <section class="content">
+            <div class="container mx-auto px-6 py-3">
+                <h1 class="text-4xl font-bold text-[#383838]">
+                    {{ product.title }}
+                </h1>
+                <div class="grid grid-cols-2 border border-[#f2f2f2] mt-8">
+                    <div class="pt-20 pr-[39px] pl-28 relative">
+                        <span class="absolute top-6 right-6">
+                            <!-- text-red-500 -->
+                            <svg class="hover:text-red-500 cursor-pointer transition-colors" width="20" height="20"
+                                viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M10.0003 17.7917L8.79199 16.6917C4.50033 12.8 1.66699 10.2333 1.66699 7.08333C1.66699 4.51667 3.68366 2.5 6.25033 2.5C7.70033 2.5 9.09199 3.175 10.0003 4.24167C10.9087 3.175 12.3003 2.5 13.7503 2.5C16.317 2.5 18.3337 4.51667 18.3337 7.08333C18.3337 10.2333 15.5003 12.8 11.2087 16.7L10.0003 17.7917Z"
+                                    fill="currentColor" />
+                            </svg>
+                        </span>
+                        <div class="main__image relative">
+                            <div class="max-w-[500px] max-h-[500px] leading-[497px] mb-[30px]">
+                                <img id="mainImage" class="max-w-full h-auto max-h-[inherit]"
+                                    src="{{ product.image.url }}" alt="" />
+                            </div>
+                        </div>
+                        <div class="slides absolute top-[107px] left-10 w-[54px] h-[400px]">
+                            <div class="mx-auto max-w-64 max-h-60 overflow-hidden relative z-[1]">
+                                <ul class="">
+                                    {% for i in product.images.all %}
+                                    <li class="mb-2.5 cursor-pointer">
+                                        <img class="thumbnail" src="{{ i.image.url }}" alt="" />
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+
+                        <!-- Артикул -->
+                        <div class="p-7 border-b border-[#f2f2f2]">
+                            <span class="text-[#666] text-[13px]"> Артикул: {{ product.id }} </span>
+                        </div>
+                        <!-- title and description -->
+                        <div class="grid grid-cols-2 mt-4">
+                            <div>
+                                <div class="flex flex-col gap-4">
+                                    <p id="price" class="text-[26px] font-bold text-[#1d2029]">
+                                        6 700 сом
+                                    </p>
+                                    <div class="order__type flex flex-col gap-4">
+                                        <p class="text-[13px] text-[#888]">Типа заказа</p>
+                                        <div class="text-base">
+                                            <button id="btnRent" class="rent active transition-colors">
+                                                Напрокат
+                                            </button>
+                                            <button id="btnBuy" class="buy">Купить</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button
+                                    class="reserve mt-4 transition-colors duration-500 ease text-[#B0A1FC] border border-[#B0A1FC] text-sm hover:text-white hover:bg-[#B0A1FC] cursor-pointer">
+                                    <a href="#" class="py-2.5 px-[25px] inline-block cursor-pointer">
+                                        Зарезервировать
+                                    </a>
+                                </button>
+                            </div>
+                            <div class="characteristics">
+                                <h2 class="text-xl text-[#444] pb-2">Характеристики</h2>
+                                <div>
+                                    <div class="mb-3">
+                                        <p class="name">Длина</p>
+                                        <p class="value">В пол</p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <p class="name">Длина Рукава</p>
+                                        <p class="value">Без рукавов</p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <p class="name">Плечи</p>
+                                        <p class="value">На бретельках</p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <p class="name">Декольте</p>
+                                        <p class="value">V образное, С декольте</p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <p class="name">Вырез на ноге</p>
+                                        <p class="value">Нет выреза на ногах</p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <p class="name">Шлейф</p>
+                                        <p class="value">Есть шлейф</p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <p class="name">Силуэт</p>
+                                        <p class="value">А-силуэт</p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <p class="name">Украшение</p>
+                                        <p class="value">Стразы / Блёстки, Вышивка</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+<script>
+        document.querySelectorAll('.thumbnail').forEach(item => {
+            item.addEventListener('click', event => {
+                const mainImage = document.getElementById('mainImage');
+                mainImage.src = event.target.src;  // Update the src of the main image to the src of the clicked thumbnail
+            });
+        });
+    document.getElementById('btnRent').addEventListener('click', function () {
+            this.classList.add('active');
+            document.getElementById('btnBuy').classList.remove('active');
+            document.getElementById('price').innerText = '{{ product.price_rent }} сом'; // Price for rent
+        });
+
+        document.getElementById('btnBuy').addEventListener('click', function () {
+            this.classList.add('active');
+            document.getElementById('btnRent').classList.remove('active');
+            document.getElementById('price').innerText = '{{ product.price }} сом'; // Price to buy
+        });
+    </script>
+{% endblock %}

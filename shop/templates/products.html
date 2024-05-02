@@ -1,0 +1,240 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Продукция
+{% endblock %}
+
+{% block content %}
+    <main class="products">
+        <section>
+            <div class="container mx-auto px-6">
+                <div class="flex gap-4">
+                    <div class="filter__wrapper w-1/4">
+                        <form class="text-[#666] bg-[#f9f9f9] pb-8 mt-9" action="">
+                            <div class="filter__parameters" style="padding: 30px">
+
+                                <div class="filter__parameters__box title text-sm text-[#333] pr-[35px]">
+                                    <div class="filter_parameters_box_title font-bold hover:text-[#b0a1fc]">
+                                        Фильтр по параметрам
+                                    </div>
+                                </div>
+                                <!-- цена -->
+
+                                <div class="filter__parameters__box text-sm text-[#333] pr-[35px]">
+                                    <div class="filter_parameters_box_title hover:text-[#b0a1fc]" style="padding: 10px">Название</div>
+
+
+                                        {{ filter.title }}
+                                </div>
+                                <div class="filter__parameters__box text-sm text-[#333] pr-[35px]">
+                                    <div class="filter_parameters_box_title hover:text-[#b0a1fc]" style="padding: 10px">Цена от</div>
+
+
+
+                                        {{ filter.price_from }}
+
+                                </div>
+                                <div class="filter__parameters__box text-sm text-[#333] pr-[35px]">
+                                    <div class="filter_parameters_box_title hover:text-[#b0a1fc]" style="padding: 10px">Цена до</div>
+
+
+
+                                        {{ filter.price_to }}
+
+                                </div>
+                                <!-- цвет -->
+                                <div class="filter__parameters__box text-sm text-[#333] pr-[35px]">
+                                    <div class="filter_parameters_box_title hover:text-[#b0a1fc]" style="padding: 10px">Категория</div>
+                                    {{ filter.category }}
+                                </div>
+                                <!-- силуэт -->
+                                <div class="filter__parameters__box text-sm text-[#333] pr-[35px]">
+                                    <div class="filter_parameters_box_title hover:text-[#b0a1fc]" style="padding: 10px">Силуэт</div>
+                                    <div
+                                        class="filter_block max-h-[250px] overflow-y-auto h-0 overflow-hidden transition-all mt-2">
+                                        <div class="flex flex-col gap-2">
+                                            <label class="block">
+                                                <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600">
+                                                <span class="ml-2 text-[#333]">С пышной юбкой</span>
+                                            </label>
+                                            <label class="block">
+                                                <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600">
+                                                <span class="ml-2 text-[#333]">По фигуре</span>
+                                            </label>
+                                            <label class="block">
+                                                <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600">
+                                                <span class="ml-2 text-[#333]">Халат</span>
+                                            </label>
+                                            <label class="block">
+                                                <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600">
+                                                <span class="ml-2 text-[#333]">Трансформер</span>
+                                            </label>
+
+                                            <label class="block">
+                                                <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600">
+                                                <span class="ml-2 text-[#333]">Пиджаки</span>
+                                            </label>
+                                            <!-- Add additional checkboxes as needed -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- и тд по фильтру -->
+                            </div>
+                            <div class="text-center px-3.5 py-p[19px]">
+                                <button
+                                    class="bg-[#B0A1FC] border border-[#B0A1FC] text-white rounded pt-[7px] pb-[9px] px-[18px] hover:bg-[#c9bffd]">Показать</button>
+                                <a href="/product/list/"
+                                    class="border border-[#aaa] text-[#888] pt-[7px] pb-[9px] px-[18px] hover:bg-[#B0A1FC] hover:border-[#B0A1FC] transition-colors hover:text-white">Сбросить</a>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="main__content w-4/6">
+                        <div class="cards gap-4 grid grid-cols-1 mt-9 sm:grid-cols-2 lg-md:grid-cols-3">
+                            {% for product in products %}
+                            <div class="card__item p-5 border border-[#eee] relative">
+                                <span class="absolute top-6 right-6">
+                                    <i class="svg inline svg-inline-wish big" aria-hidden="true">
+                                        <!-- вместо text-white вставить  -->
+                                        <svg class="text-white transition-colors cursor-pointer"
+                                            xmlns="http://www.w3.org/2000/svg" width="22.969" height="21"
+                                            viewBox="0 0 22.969 21">
+                                            <defs>
+                                                <style>
+                                                    .whcls-1 {
+                                                        fill: currentColor;
+                                                        fill-rule: evenodd;
+                                                    }
+                                                </style>
+                                            </defs>
+                                            <path fill="currentColor"
+                                                d="M21.028,10.68L11.721,20H11.339L2.081,10.79A6.19,6.19,0,0,1,6.178,0a6.118,6.118,0,0,1,5.383,3.259A6.081,6.081,0,0,1,23.032,6.147,6.142,6.142,0,0,1,21.028,10.68ZM19.861,9.172h0l-8.176,8.163H11.369L3.278,9.29l0.01-.009A4.276,4.276,0,0,1,6.277,1.986,4.2,4.2,0,0,1,9.632,3.676l0.012-.01,0.064,0.1c0.077,0.107.142,0.22,0.208,0.334l1.692,2.716,1.479-2.462a4.23,4.23,0,0,1,.39-0.65l0.036-.06L13.52,3.653a4.173,4.173,0,0,1,3.326-1.672A4.243,4.243,0,0,1,19.861,9.172ZM22,20h1v1H22V20Zm0,0h1v1H22V20Z"
+                                                transform="translate(-0.031)"></path>
+                                        </svg>
+                                    </i>
+                                </span>
+                                <!-- img -->
+                                <a href="" class="flex justify-center">
+                                    <img class="max-h-[390px] pb-5" src="{{ product.image.url }}" alt="" />
+                                </a>
+                                <!-- title -->
+                                <div class="text-[#1d2029] hover:text-[#b0a1fc]">
+                                    <a class="text-sm font-bold" href="">
+                                        {{ product.title }}
+                                    </a>
+                                </div>
+                                <!-- rate -->
+                                <div class="flex justify-center mt-1.5 mb-2.5">
+                                    <table class="table-no-border">
+                                        <!-- добавь text-yellow-200 иконкам(svg) если есть рейтинг -->
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <div class="star-active star-empty" title="1">
+                                                        <svg class="hover:text-yellow-200 transition-colors" width="22"
+                                                            height="22" viewBox="0 0 22 22" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <path
+                                                                d="M16.6647 19.25L15.1659 12.8068L20.1663 8.47371L13.5746 7.90812L10.9997 1.83337L8.42476 7.90812L1.83301 8.47371L6.83342 12.8068L5.33467 19.25L10.9997 15.8327L16.6647 19.25Z"
+                                                                fill="currentColor" />
+                                                        </svg>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="star-active star-empty" title="1">
+                                                        <svg class="hover:text-yellow-200 transition-colors" width="22"
+                                                            height="22" viewBox="0 0 22 22" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <path
+                                                                d="M16.6647 19.25L15.1659 12.8068L20.1663 8.47371L13.5746 7.90812L10.9997 1.83337L8.42476 7.90812L1.83301 8.47371L6.83342 12.8068L5.33467 19.25L10.9997 15.8327L16.6647 19.25Z"
+                                                                fill="currentColor" />
+                                                        </svg>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="star-active star-empty" title="1">
+                                                        <svg class="hover:text-yellow-200 transition-colors" width="22"
+                                                            height="22" viewBox="0 0 22 22" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <path
+                                                                d="M16.6647 19.25L15.1659 12.8068L20.1663 8.47371L13.5746 7.90812L10.9997 1.83337L8.42476 7.90812L1.83301 8.47371L6.83342 12.8068L5.33467 19.25L10.9997 15.8327L16.6647 19.25Z"
+                                                                fill="currentColor" />
+                                                        </svg>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="star-active star-empty" title="1">
+                                                        <svg class="hover:text-yellow-200 transition-colors" width="22"
+                                                            height="22" viewBox="0 0 22 22" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <path
+                                                                d="M16.6647 19.25L15.1659 12.8068L20.1663 8.47371L13.5746 7.90812L10.9997 1.83337L8.42476 7.90812L1.83301 8.47371L6.83342 12.8068L5.33467 19.25L10.9997 15.8327L16.6647 19.25Z"
+                                                                fill="currentColor" />
+                                                        </svg>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="star-active star-empty" title="1">
+                                                        <svg class="hover:text-yellow-200 transition-colors" width="22"
+                                                            height="22" viewBox="0 0 22 22" fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <path
+                                                                d="M16.6647 19.25L15.1659 12.8068L20.1663 8.47371L13.5746 7.90812L10.9997 1.83337L8.42476 7.90812L1.83301 8.47371L6.83342 12.8068L5.33467 19.25L10.9997 15.8327L16.6647 19.25Z"
+                                                                fill="currentColor" />
+                                                        </svg>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- price -->
+                                <div class="mt-6 text-lg font-bold text-[#1d2029]">
+                                    <p class="text-[#999] text-xs inline-block">Артикул: {{ product.id }}</p>
+                                    <p>{{ product.price }} сом</p>
+                                </div>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <button
+                                        class="flex-grow py-2.5 bg-orange-500 rounded-lg text-white mt-5 hover:bg-orange-600 transition-colors cursor-pointer">
+                                        <a href="/product/detail/{{ product.id }}/">Подробнее</a>
+                                    </button>
+
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <nav aria-label="Page navigation example" style="padding-top: 50px">
+  <ul class="flex items-center justify-center -space-x-px h-10 text-base">
+    {% if page_obj.has_previous %}
+    <li>
+      <a href="?page={{ page_obj.previous_page_number }}" class="flex items-center justify-center px-4 h-10 ms-0 leading-tight text-[#444] bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700">
+        <span class="sr-only">Previous</span>
+        <!-- SVG code for the left arrow -->
+      </a>
+    </li>
+    {% endif %}
+
+    {% for num in page_obj.paginator.page_range %}
+    <li>
+      <a href="?page={{ num }}" class="flex items-center justify-center px-4 h-10 leading-tight text-[#444] bg-white border border-gray-300 {% if num == page_obj.number %}text-blue-600 border-blue-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700{% else %}hover:bg-gray-100 hover:text-gray-700{% endif %}">
+        {{ num }}
+      </a>
+    </li>
+    {% endfor %}
+
+    {% if page_obj.has_next %}
+    <li>
+      <a href="?page={{ page_obj.next_page_number }}" class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700">
+        <span class="sr-only">Next</span>
+        <!-- SVG code for the right arrow -->
+      </a>
+    </li>
+    {% endif %}
+  </ul>
+</nav>
+
+            </div>
+        </section>
+    </main>
+{% endblock %}
