@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views import generic
+
+from .forms import OrderForm
 from .models import *
 from .filters import ProductFilter
 
@@ -49,3 +51,17 @@ class ProductDetailView(generic.DetailView):
         context['filter'] = ProductFilter(self.request.GET).form
         context['categories'] = Category.objects.all()
         return context
+
+
+def order_create(request, pk):
+    product = Product.objects.get(id=pk)
+    form = OrderForm()
+    if request.method == 'POST':
+        form = OrderForm(request.POST)
+        if form.is_valid():
+            order = form.save(commit=False)
+            order.product = product
+            order.save()
+            return redirect('/')
+        print(form.errors)
+    return render(request, 'order.html')

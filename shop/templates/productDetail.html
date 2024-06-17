@@ -162,22 +162,14 @@
                             <div>
                                 <div class="flex flex-col gap-4">
                                     <p id="price" class="text-[26px] font-bold text-[#1d2029]">
-                                        6 700 сом
+                                        {{ product.price }} сом
                                     </p>
-                                    <div class="order__type flex flex-col gap-4">
-                                        <p class="text-[13px] text-[#888]">Типа заказа</p>
-                                        <div class="text-base">
-                                            <button id="btnRent" class="rent active transition-colors">
-                                                Напрокат
-                                            </button>
-                                            <button id="btnBuy" class="buy">Купить</button>
-                                        </div>
-                                    </div>
+
                                 </div>
                                 <button
                                     class="reserve mt-4 transition-colors duration-500 ease text-[#B0A1FC] border border-[#B0A1FC] text-sm hover:text-white hover:bg-[#B0A1FC] cursor-pointer">
-                                    <a href="#" class="py-2.5 px-[25px] inline-block cursor-pointer">
-                                        Зарезервировать
+                                    <a href="{% url 'order_create' product.pk %}" class="py-2.5 px-[25px] inline-block cursor-pointer">
+                                        Купить
                                     </a>
                                 </button>
                             </div>
@@ -185,36 +177,8 @@
                                 <h2 class="text-xl text-[#444] pb-2">Характеристики</h2>
                                 <div>
                                     <div class="mb-3">
-                                        <p class="name">Длина</p>
-                                        <p class="value">В пол</p>
-                                    </div>
-                                    <div class="mb-3">
-                                        <p class="name">Длина Рукава</p>
-                                        <p class="value">Без рукавов</p>
-                                    </div>
-                                    <div class="mb-3">
-                                        <p class="name">Плечи</p>
-                                        <p class="value">На бретельках</p>
-                                    </div>
-                                    <div class="mb-3">
-                                        <p class="name">Декольте</p>
-                                        <p class="value">V образное, С декольте</p>
-                                    </div>
-                                    <div class="mb-3">
-                                        <p class="name">Вырез на ноге</p>
-                                        <p class="value">Нет выреза на ногах</p>
-                                    </div>
-                                    <div class="mb-3">
-                                        <p class="name">Шлейф</p>
-                                        <p class="value">Есть шлейф</p>
-                                    </div>
-                                    <div class="mb-3">
-                                        <p class="name">Силуэт</p>
-                                        <p class="value">А-силуэт</p>
-                                    </div>
-                                    <div class="mb-3">
-                                        <p class="name">Украшение</p>
-                                        <p class="value">Стразы / Блёстки, Вышивка</p>
+
+                                        <p class="value">{{ product.description }}</p>
                                     </div>
                                 </div>
                             </div>

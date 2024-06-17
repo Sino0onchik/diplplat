@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container mx-auto mt-10 p-8 bg-white rounded shadow-lg">
+        <h1 class="text-2xl font-bold mb-8 text-gray-700">Форма оформления заказа</h1>
+        <form method="post" >
+            <div class="mb-4">
+                {% csrf_token %}
+                <label class="block text-gray-700 font-bold mb-2" for="name">Имя</label>
+                <input name="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="Ваше имя">
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2" for="phone">Номер телефона</label>
+                <input name="phone" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="phone" type="text" placeholder="Ваш номер телефона">
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2" for="email">Электронная почта</label>
+                <input name="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" placeholder="Ваш адрес электронной почты">
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2" for="address">Адрес доставки</label>
+                <input name="address" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="address" type="text" placeholder="Ваш адрес доставки">
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2" for="city">Город</label>
+                <input name="city" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="city" type="text" placeholder="Город">
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2" for="state">Штат/Область</label>
+                <input name="state" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="state" type="text" placeholder="Штат/Область">
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 font-bold mb-2" for="zip">Почтовый индекс</label>
+                <input name="zip_code" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="zip" type="text" placeholder="Почтовый индекс">
+            </div>
+            <div class="flex items-center justify-between">
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                    Оформить заказ
+                </button>
+            </div>
+        </form>
+    </div>
+{% endblock %}
